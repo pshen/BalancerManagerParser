@@ -138,7 +138,7 @@ class BalancerManagerParser(HTMLParser):
       if broken:
         print lb.name,
 
-        if lbs.workers == None:
+        if lb.workers == None:
           print "Empty workers"
           continue
 
