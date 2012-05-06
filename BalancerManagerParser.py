@@ -1,4 +1,8 @@
 #!/usr/local/bin/python
+#
+# Author: Chenjun Shen
+#
+# Inspired by https://github.com/nmaupu/Apache-Cluster-Manager
 
 from HTMLParser import HTMLParser
 from urllib2 import urlopen
