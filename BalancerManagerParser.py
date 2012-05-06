@@ -12,7 +12,6 @@ import sys
 class Worker:
   """apache Load Balancer Worker class"""
   def __init__(self):
-    self.mark = False
     self.actionURL = ''
     self.Worker_URL = ''
     self.Route = ''
@@ -32,7 +31,8 @@ class Worker:
 class LoadBalancer:
   """apache Load Balancer class - contains a list of Workers"""
   def __init__(self):
-    self.mark = False
+    # defaultly we think lb is broken
+    self.broken=True
     self.name = ''
     self.StickySession = ''
     self.Timeout = ''
@@ -127,15 +127,18 @@ class BalancerManagerParser(HTMLParser):
     self.lbptr = -1
     self.wptr  = -1
 
-  def get_broken_lb(self):
-    for lb in iter(self.lbs):
-      broken = True
+  def check_broken_lb(self):
+    # defaut
+    self.broken = false
 
+    for lb in iter(self.lbs):
       for worker in iter(lb.workers):
         if worker.Status == "Ok":
-          broken = False  
+          lb.broken = False  
 
-      if broken:
+      if lb.broken:
+	self.broken = True
+
         print lb.name,
 
         if lb.workers == None:
@@ -146,6 +149,8 @@ class BalancerManagerParser(HTMLParser):
           print "%s:%s" % (worker.Worker_URL, worker.Status),
         print ""
     
+    if not self.broken:
+	print "OK" 
     
 ##
 # Called by OpenNMS
@@ -169,5 +174,4 @@ if __name__ == "__main__":
   page.close()
   parser = BalancerManagerParser()
   parser.feed(pageSrc)
-  if parser.get_broken_lb() == None:
-    print "OK"
+  parser.check_broken_lb()
