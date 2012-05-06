@@ -127,24 +127,24 @@ class BalancerManagerParser(HTMLParser):
     self.wptr  = -1
 
   def get_broken_lb(self):
-		for lb in iter(self.lbs):
-			broken = True
+    for lb in iter(self.lbs):
+      broken = True
 
-			for worker in iter(lb.workers):
-				if worker.Status == "Ok":
-					broken = False	
+      for worker in iter(lb.workers):
+        if worker.Status == "Ok":
+          broken = False  
 
-			if broken:
-				print lb.name,
+      if broken:
+        print lb.name,
 
-				if lbs.workers == None:
-					print "Empty workers"
-					continue
+        if lbs.workers == None:
+          print "Empty workers"
+          continue
 
-				for worker in iter(lb.workers):
-					print "%s:%s" % (worker.Worker_URL, worker.Status),
-				print ""
-		
+        for worker in iter(lb.workers):
+          print "%s:%s" % (worker.Worker_URL, worker.Status),
+        print ""
+    
     
 if __name__ == "__main__":
   page = urlopen("http://localhost:8000/balancer-manager")
@@ -153,4 +153,4 @@ if __name__ == "__main__":
   parser = BalancerManagerParser()
   parser.feed(pageSrc)
   if parser.get_broken_lb() == None:
-		print "Ok"
+    print "Ok"
