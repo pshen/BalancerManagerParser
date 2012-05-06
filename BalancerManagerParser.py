@@ -147,7 +147,6 @@ class BalancerManagerParser(HTMLParser):
 
         for worker in iter(lb.workers):
           print "%s:%s" % (worker.Worker_URL, worker.Status),
-        print ""
     
     if not self.broken:
 	print "OK" 
