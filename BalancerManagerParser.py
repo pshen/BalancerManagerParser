@@ -9,7 +9,7 @@ from urllib2 import urlopen, URLError, HTTPError
 import re
 import sys
 
-class Worker():
+class Worker:
   """apache Load Balancer Worker class"""
   def __init__(self):
     self.mark = False
@@ -29,7 +29,7 @@ class Worker():
       (self.Worker_URL, self.Route, self.RouteRedir, self.Factor, self.Set, self.Status, self.Elected, self.To, self.From)
 
 
-class LoadBalancer():
+class LoadBalancer:
   """apache Load Balancer class - contains a list of Workers"""
   def __init__(self):
     self.mark = False
