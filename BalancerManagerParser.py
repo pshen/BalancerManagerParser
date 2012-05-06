@@ -157,7 +157,7 @@ class BalancerManagerParser(HTMLParser):
 if __name__ == "__main__":
 
   try:
-    page = urlopen("http://%s/balancer-manager-nms" % (sys.argv[2]))
+    page = urlopen("http://%s/balancer-manager-nms" % (sys.argv[2]), timeout=int(sys.argv[4])/1000)
   except URLError, err:
     print err
     sys.exit(2)
