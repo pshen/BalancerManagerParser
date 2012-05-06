@@ -170,4 +170,4 @@ if __name__ == "__main__":
   parser = BalancerManagerParser()
   parser.feed(pageSrc)
   if parser.get_broken_lb() == None:
-    print "Ok"
+    print "OK"
