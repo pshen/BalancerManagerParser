@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python26
 #
 # Author: Chenjun Shen
 #
