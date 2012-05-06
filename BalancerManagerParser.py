@@ -129,7 +129,7 @@ class BalancerManagerParser(HTMLParser):
 
   def check_broken_lb(self):
     # defaut
-    self.broken = false
+    self.broken = False
 
     for lb in iter(self.lbs):
       for worker in iter(lb.workers):
