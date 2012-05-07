@@ -141,8 +141,8 @@ class BalancerManagerParser(HTMLParser):
 
                 print lb.name,
 
-                if lb.workers == None:
-                    print "Empty workers"
+                if lb.workers == []:
+                    print "empty workers"
                     continue
 
                 for worker in iter(lb.workers):
