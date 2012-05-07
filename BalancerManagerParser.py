@@ -132,15 +132,19 @@ class BalancerManagerParser(HTMLParser):
         self.broken = False
 
         for lb in iter(self.lbs):
+
+            # skip lb endswith "-test"
+            if lb.name.lower().endswith("-test"):
+                lb.broken = False
+                continue
+
             for worker in iter(lb.workers):
                 if worker.Status == "Ok":
                     lb.broken = False    
 
             if lb.broken:
                 self.broken = True
-
                 print lb.name,
-
                 if lb.workers == []:
                     print "empty workers"
                     continue
