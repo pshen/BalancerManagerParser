@@ -5,7 +5,7 @@
 # Inspired by https://github.com/nmaupu/Apache-Cluster-Manager
 
 from HTMLParser import HTMLParser
-from urllib2 import urlopen, URLError, HTTPError
+from urllib2 import urlopen, Request, URLError, HTTPError
 import re
 import sys
 
@@ -161,7 +161,9 @@ class BalancerManagerParser(HTMLParser):
 if __name__ == "__main__":
 
     try:
-        page = urlopen("http://%s/balancer-manager-nms" % (sys.argv[2]), timeout=int(sys.argv[4])/1000)
+        req = Request("http://%s/balancer-manager-nms" % (sys.argv[2]))
+        req.add_header("Host", "opennms")
+        page = urlopen(req, timeout=int(sys.argv[4])/1000)
     except URLError, err:
         print err
         sys.exit(2)
