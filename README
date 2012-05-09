@@ -1,1 +1,6 @@
 Require python26
+
+Python dependencies:
+  - HTMLParser
+  - urllib2
+  - re
