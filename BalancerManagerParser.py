@@ -1,4 +1,4 @@
-#!/usr/bin/python26
+#!/usr/bin/env python
 # Copyright 2012 Chenjun Shen
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
