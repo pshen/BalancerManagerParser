@@ -150,7 +150,7 @@ class BalancerManagerParser(HTMLParser):
                 continue
 
             for worker in iter(lb.workers):
-                if worker.Status == "Ok" or worker.Status == "Stby Ok":
+                if worker.Status == "Ok" or worker.Status == "Stby_Ok":
                     lb.broken = False    
 
             if lb.broken:
